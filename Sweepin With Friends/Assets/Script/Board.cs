@@ -2,6 +2,8 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+
+
 public class Board : MonoBehaviour
 {
 
@@ -21,7 +23,7 @@ public class Board : MonoBehaviour
     public Tile tileNum7;
     public Tile tileNum8;
     public Tile tileNum9;
-    public Tile tileNum10;
+    
     
     
 
@@ -71,7 +73,7 @@ public class Board : MonoBehaviour
             case Tile.Type.Empty: return tileEmpty;
             case Tile.Type.Mine: return tileMine;
             case Tile.Type.Number: return GetNumberTile(tile);
-            default: return tileNum9;
+            default: return tileNum1;
 
         }
     }
@@ -89,7 +91,7 @@ public class Board : MonoBehaviour
             case 7: return tileNum7;
             case 8: return tileNum8;
             case 9: return tileNum9;
-            default: return tileNum9;
+            default: return tileNum1;
         }
 
     }
