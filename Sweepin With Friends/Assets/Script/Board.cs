@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -32,10 +33,12 @@ public class Board : MonoBehaviour
 
         for(int x = 0; x < width; x++)
         {
-            for(int y = 0; x < height; x++)
+            for(int y = 0; y < height; y++)
             {
                 Tiles tiles = state[x, y];
                 tilemap.SetTile(tiles.position, GetTile(tiles));
+                Console.Write(tiles+"1");
+                Debug.Log(tiles+"Debug");
             }
         }
 
@@ -65,7 +68,7 @@ public class Board : MonoBehaviour
             case Tiles.Type.Empty: return tileEmpty;
             case Tiles.Type.Mine: return tileMine;
             case Tiles.Type.Number: return GetNumberTile(tiles);
-            default: return tileUnknown;
+            default: return null;
 
         }
     }
@@ -82,7 +85,7 @@ public class Board : MonoBehaviour
             case 6: return tileSix;
             case 7: return tileSeven;
             case 8: return tileEight;
-            default: return tileUnknown;
+            default: return null;
         }
 
     }

@@ -156,7 +156,7 @@ MonoBehaviour:
   width: 16
   height: 16
   mineCount: 32
-  cameraPadding: 1
+  cameraPadding: 2
 --- !u!156049354 &452438308
 Grid:
   m_ObjectHideFlags: 0
@@ -231,19 +231,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65f0f74df0be0a94dbaf4dc2887444d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileUnknown: {fileID: 11400000, guid: 0e7c5a7055c86154f85f0dbee41b0d39, type: 2}
-  tileEmpty: {fileID: 11400000, guid: 4b9d33ae75541494e83cd46cb012e6d0, type: 2}
-  tileMine: {fileID: 11400000, guid: 88de03d7d34121e48a032643d31e86ff, type: 2}
-  tileHit: {fileID: 11400000, guid: 037ff6280791d6743b5d7570f53b734e, type: 2}
-  tileFlag: {fileID: 11400000, guid: e39e2cf3068cb004bbb779e386e6c50e, type: 2}
-  tileOne: {fileID: 11400000, guid: db334a93e2f3fa74f91dc1f37458cfe6, type: 2}
-  tileTwo: {fileID: 11400000, guid: e1029579a7d26504ba0f5d8009dcc179, type: 2}
-  tileThree: {fileID: 11400000, guid: b14ffa87f72f54f48a24219cd0396f06, type: 2}
-  tileFour: {fileID: 11400000, guid: a9be2e29b5b8291428808f0342c1bb9e, type: 2}
-  tileFive: {fileID: 11400000, guid: 991271fe417a1be4095f2880911071c8, type: 2}
-  tileSix: {fileID: 11400000, guid: 0295ec63326621846b9fa3518d8a4056, type: 2}
-  tileSeven: {fileID: 11400000, guid: 9294fcb4281ace04d9a7accac9de8249, type: 2}
-  tileEight: {fileID: 11400000, guid: d5eb001777a90b9468927f2c4d805aea, type: 2}
+  tileUnknown: {fileID: 11400000, guid: c9e0dfac6aca59e4fa62fc7cb3e9c393, type: 2}
+  tileEmpty: {fileID: 11400000, guid: 88f87a91b7c184d4e8ea560bdae6f75b, type: 2}
+  tileMine: {fileID: 11400000, guid: bcf5df4b168786f42a45bc4470d6faab, type: 2}
+  tileHit: {fileID: 11400000, guid: 4a3f79736f6eacf48958b19e553eb172, type: 2}
+  tileFlag: {fileID: 11400000, guid: 20cd80d069509dd47bdf3ef3ca1e746f, type: 2}
+  tileOne: {fileID: 11400000, guid: d8dbc323b5264b14fad17c74058c7770, type: 2}
+  tileTwo: {fileID: 11400000, guid: e75daa342abfa0c4c833ca914afffc45, type: 2}
+  tileThree: {fileID: 11400000, guid: 58d947cbc2ddcde40b5c1f9b43c6c359, type: 2}
+  tileFour: {fileID: 11400000, guid: 9370097ad95a7ee44889297470bfb323, type: 2}
+  tileFive: {fileID: 11400000, guid: 503c086f1e249fd43bd6dfbfb0f047ff, type: 2}
+  tileSix: {fileID: 11400000, guid: adca2ac63615ed6459b9498bb6f02ec0, type: 2}
+  tileSeven: {fileID: 11400000, guid: 96c09d18f33f0394b812c3983cb0dcfa, type: 2}
+  tileEight: {fileID: 11400000, guid: 58c3bd038ed7a3a4ca035e5a31fdd0d3, type: 2}
 --- !u!483693784 &864750000
 TilemapRenderer:
   m_ObjectHideFlags: 0

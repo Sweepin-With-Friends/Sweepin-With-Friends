@@ -36,14 +36,16 @@ public class Game : MonoBehaviour
 
     private void GenerateTiles() // generates the tiles for teh board
     {
-        for(int x = 0; x < width; x++) {
-            for(int y =0; y < height; y++)
+        for(int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
             {
                 Tiles tile = new Tiles();
                 tile.position = new Vector3Int(x, y, 0);
                 tile.type = Tiles.Type.Empty;
                 state[x, y] = tile;
-            }    
+                //Debug.Log("Started");
+            }
         }
     }
 
