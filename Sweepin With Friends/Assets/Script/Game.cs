@@ -10,7 +10,7 @@ public class Game : MonoBehaviour
     public int cameraPadding = 1;
 
     private Board board;
-    private Tile[,] state;
+    private Tiles[,] state;
 
     private void Awake()
     {
@@ -24,7 +24,7 @@ public class Game : MonoBehaviour
 
     private void NewGame()
     {
-        state = new Tile[width, height];
+        state = new Tiles[width, height];
 
         GenerateTiles();
 
@@ -39,9 +39,9 @@ public class Game : MonoBehaviour
         for(int x = 0; x < width; x++) {
             for(int y =0; y < height; y++)
             {
-                Tile tile = new Tile();
+                Tiles tile = new Tiles();
                 tile.position = new Vector3Int(x, y, 0);
-                tile.type = Tile.Type.Empty;
+                tile.type = Tiles.Type.Empty;
                 state[x, y] = tile;
             }    
         }
@@ -54,12 +54,12 @@ public class Game : MonoBehaviour
             int x = Random.Range(0, width - i);
             int y = Random.Range(0, height - i);
 
-            if (state[x,y].type == Tile.Type.Mine)
+            if (state[x,y].type == Tiles.Type.Mine)
             {
                 GenerateMines(); //hopefull recursive
             }
 
-            state[x, y].type = Tile.Type.Mine;
+            state[x, y].type = Tiles.Type.Mine;
         }
     }
 

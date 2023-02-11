@@ -1,7 +1,7 @@
 using UnityEngine;
 
 //[System.Serializable]
-public struct Tile
+public struct Tiles
 {
     public enum Type
     { 

@@ -19,13 +19,13 @@ public class Board : MonoBehaviour
     public Tile tileSix;
     public Tile tileSeven;
     public Tile tileEight;
-
+    
     private void Awake() // creates map on activation
     {
         tilemap = GetComponent<Tilemap>();
     }
 
-    public void Draw(Tile[,] state) // creates map based on size of board
+    public void Draw(Tiles[,] state) // creates map based on size of board
     {
         int width = state.GetLength(0);
         int height = state.GetLength(1);
@@ -34,45 +34,45 @@ public class Board : MonoBehaviour
         {
             for(int y = 0; x < height; x++)
             {
-                Tile tile = state[x, y];
-                //tilemap.SetTile(tile.position, GetTile(tile));
+                Tiles tiles = state[x, y];
+                tilemap.SetTile(tiles.position, GetTile(tiles));
             }
         }
 
     }
     
-    private Tile GetTile(Tile tile) // returns the tile image
+    private Tile GetTile(Tiles tiles) // returns the tile image
     {
-        if (tile.hidden)
+        if (tiles.hidden)
         {
             return tileUnknown;
         }
-        else if (tile.flagged)
+        else if (tiles.flagged)
         {
             return tileFlag;
         }
         else
         {
-            return GetKnownTile(tile);
+            return GetKnownTile(tiles);
         }
 
     }
     
-    private Tile GetKnownTile(Tile tile) // returns the tile image other than unknown or flagged
+    private Tile GetKnownTile(Tiles tiles) // returns the tile image other than unknown or flagged
     {
-        switch (tile.type)
+        switch (tiles.type)
         {
-            case Tile.Type.Empty: return tileEmpty;
-            case Tile.Type.Mine: return tileMine;
-            case Tile.Type.Number: return GetNumberTile(tile);
+            case Tiles.Type.Empty: return tileEmpty;
+            case Tiles.Type.Mine: return tileMine;
+            case Tiles.Type.Number: return GetNumberTile(tiles);
             default: return tileUnknown;
 
         }
     }
 
-    private Tile GetNumberTile(Tile tile) // returns the tile image for numbers
+    private Tile GetNumberTile(Tiles tiles) // returns the tile image for numbers
     {
-        switch (tile.number)
+        switch (tiles.number)
         {
             case 1: return tileOne;
             case 2: return tileTwo;
