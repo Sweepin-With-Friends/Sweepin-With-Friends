@@ -6,6 +6,7 @@ public class Game : MonoBehaviour
 
     public int width = 16;
     public int height = 16;
+    public int cameraPadding = 1;
 
     private Board board;
     private Tile[,] state;
@@ -25,6 +26,9 @@ public class Game : MonoBehaviour
         state = new Tile[width, height];
 
         GenerateCells();
+
+        Camera.main.transform.position = new Vector3(width / 2f, height / 2f, -10f);
+        Camera.main.orthographicSize = Mathf.Max(width, height) / 2f + cameraPadding;
 
         board.Draw(state);
     }   

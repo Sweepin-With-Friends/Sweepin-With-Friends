@@ -21,6 +21,8 @@ public class Board : MonoBehaviour
     public Tile tileNum7;
     public Tile tileNum8;
     public Tile tileNum9;
+    public Tile tileNum10;
+    
     
 
     private void Awake() // creates map on activation
@@ -61,7 +63,7 @@ public class Board : MonoBehaviour
         }
 
     }
-
+    
     private Tile GetKnownTile(Tile tile) // returns the tile image other than unknown or flagged
     {
         switch (tile.type)
