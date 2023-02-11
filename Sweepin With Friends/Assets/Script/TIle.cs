@@ -3,7 +3,6 @@ using UnityEngine;
 //[System.Serializable]
 public struct Tile
 {
-
     public enum Type
     { 
         Empty, // tile is empty

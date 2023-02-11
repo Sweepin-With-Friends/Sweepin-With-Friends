@@ -1,35 +1,27 @@
-
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-
-
+[RequireComponent(typeof(Tilemap))]
 public class Board : MonoBehaviour
-{
-
+{   
     public Tilemap tilemap { get; private set; }
 
     public Tile tileUnknown; // untouched tile
     public Tile tileEmpty; // empty tile
     public Tile tileMine; // mine tile
-    public Tile tileExploded; // exploded mine
+    public Tile tileHit; // exploded mine
     public Tile tileFlag; // flag tile
-    public Tile tileNum1; // number tile
-    public Tile tileNum2;
-    public Tile tileNum3;
-    public Tile tileNum4;
-    public Tile tileNum5;
-    public Tile tileNum6;
-    public Tile tileNum7;
-    public Tile tileNum8;
-    public Tile tileNum9;
-    
-    
-    
+    public Tile tileOne; // number tile
+    public Tile tileTwo;
+    public Tile tileThree;
+    public Tile tileFour;
+    public Tile tileFive;
+    public Tile tileSix;
+    public Tile tileSeven;
+    public Tile tileEight;
 
     private void Awake() // creates map on activation
     {
-
         tilemap = GetComponent<Tilemap>();
     }
 
@@ -43,7 +35,7 @@ public class Board : MonoBehaviour
             for(int y = 0; x < height; x++)
             {
                 Tile tile = state[x, y];
-                //tilemap.SetTile(tile.position, GetTile(tile)); // throws error?!
+                //tilemap.SetTile(tile.position, GetTile(tile));
             }
         }
 
@@ -73,7 +65,7 @@ public class Board : MonoBehaviour
             case Tile.Type.Empty: return tileEmpty;
             case Tile.Type.Mine: return tileMine;
             case Tile.Type.Number: return GetNumberTile(tile);
-            default: return tileNum1;
+            default: return tileUnknown;
 
         }
     }
@@ -82,16 +74,15 @@ public class Board : MonoBehaviour
     {
         switch (tile.number)
         {
-            case 1: return tileNum1;
-            case 2: return tileNum2;
-            case 3: return tileNum3;
-            case 4: return tileNum4;
-            case 5: return tileNum5;
-            case 6: return tileNum6;
-            case 7: return tileNum7;
-            case 8: return tileNum8;
-            case 9: return tileNum9;
-            default: return tileNum1;
+            case 1: return tileOne;
+            case 2: return tileTwo;
+            case 3: return tileThree;
+            case 4: return tileFour;
+            case 5: return tileFive;
+            case 6: return tileSix;
+            case 7: return tileSeven;
+            case 8: return tileEight;
+            default: return tileUnknown;
         }
 
     }
