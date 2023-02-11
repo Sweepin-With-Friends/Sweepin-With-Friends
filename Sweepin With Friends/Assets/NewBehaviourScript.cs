@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public struct Tile
+public struct Cell
 {
 
     public enum Type
@@ -15,8 +15,5 @@ public struct Tile
     public Type type;
     public int number;
     public bool hidden, flagged, hit;
-
-
-
 
 }
