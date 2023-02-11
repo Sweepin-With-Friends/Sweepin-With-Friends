@@ -13,10 +13,7 @@ public struct Tiles
     public Vector3Int position; // position on board
     public Type type; // type of tile
     public int number; // number of mines touching tile
-    public bool hidden;
-    public bool flagged;
-    public bool hit; 
-        // apearance of tile
+    public bool hidden, flagged, hit; // apearance of tile
 
 
 }
