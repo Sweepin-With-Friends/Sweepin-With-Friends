@@ -6,6 +6,7 @@ public class Game : MonoBehaviour
 
     public int width = 16;
     public int height = 16;
+    public int mineCount = 32;
     public int cameraPadding = 1;
 
     private Board board;
@@ -25,7 +26,7 @@ public class Game : MonoBehaviour
     {
         state = new Tile[width, height];
 
-        GenerateCells();
+        GenerateTiles();
 
         Camera.main.transform.position = new Vector3(width / 2f, height / 2f, -10f);
         Camera.main.orthographicSize = Mathf.Max(width, height) / 2f + cameraPadding;
@@ -33,7 +34,7 @@ public class Game : MonoBehaviour
         board.Draw(state);
     }   
 
-    private void GenerateCells()
+    private void GenerateTiles() // generates the tiles for teh board
     {
         for(int x = 0; x < width; x++) {
             for(int y =0; y < height; y++)
@@ -43,6 +44,22 @@ public class Game : MonoBehaviour
                 tile.type = Tile.Type.Empty;
                 state[x, y] = tile;
             }    
+        }
+    }
+
+    private void GenerateMines() // generates mines for the board 
+    {
+        for(int i = 0; i < width; i++)
+        {
+            int x = Random.Range(0, width - i);
+            int y = Random.Range(0, height - i);
+
+            if (state[x,y].type == Tile.Type.Mine)
+            {
+                GenerateMines(); //hopefull recursive
+            }
+
+            state[x, y].type = Tile.Type.Mine;
         }
     }
 
