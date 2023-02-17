@@ -5,6 +5,7 @@ public struct Tiles
 {
     public enum Type
     { 
+        Invalid,// non board cell
         Empty, // tile is empty
         Mine, // tile is a mine
         Number, // number of mines touching tile

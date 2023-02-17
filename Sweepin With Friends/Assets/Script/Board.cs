@@ -37,8 +37,8 @@ public class Board : MonoBehaviour
             {
                 Tiles tiles = state[x, y];
                 tilemap.SetTile(tiles.position, GetTile(tiles));
-                Console.Write(tiles+"1");
-                Debug.Log(tiles+"Debug");
+                //Console.Write(tiles+"1");
+                //Debug.Log(tiles+"Debug");
             }
         }
 
@@ -46,9 +46,9 @@ public class Board : MonoBehaviour
     
     private Tile GetTile(Tiles tiles) // returns the tile image
     {
-        if (tiles.hidden)
+        if (!tiles.hidden)
         {
-            return tileUnknown;
+            return GetKnownTile(tiles);
         }
         else if (tiles.flagged)
         {
@@ -56,7 +56,7 @@ public class Board : MonoBehaviour
         }
         else
         {
-            return GetKnownTile(tiles);
+            return tileUnknown;
         }
 
     }
