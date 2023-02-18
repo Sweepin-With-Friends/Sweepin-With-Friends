@@ -46,14 +46,19 @@ public class Board : MonoBehaviour
     
     private Tile GetTile(Tiles tiles) // returns the tile image
     {
-        if (!tiles.hidden)
+
+        if (tiles.hit)
+        {
+            return tileHit;
+        }
+        else if (!tiles.hidden)
         {
             return GetKnownTile(tiles);
         }
         else if (tiles.flagged)
         {
             return tileFlag;
-        }
+        }    
         else
         {
             return tileUnknown;
