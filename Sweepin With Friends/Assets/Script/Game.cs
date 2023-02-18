@@ -4,6 +4,7 @@ using System.Threading;
 using Unity.Mathematics;
 using Random = UnityEngine.Random;
 using UnityEngine;
+using Unity.VisualScripting;
 
 public class Game : MonoBehaviour
 {
@@ -111,7 +112,7 @@ public class Game : MonoBehaviour
 
     }
 
-    private int CountMine(int tileX, int tileY)
+    private int CountMine(int tileX, int tileY)//counts adjacent mines from tile location
     {
         int count = 0;
 
@@ -139,15 +140,57 @@ public class Game : MonoBehaviour
 
     }
 
-    private void Update()//special unity function
+    private void Flood(int tileX, int tileY)//reveal flooding
     {
-        if (Input.GetMouseButtonDown(1))
+
+        for (int adjacentX = -1; adjacentX <= 1; adjacentX++)
+        {
+            for (int adjacentY = -1; adjacentY <= 1; adjacentY++)
+            {
+                if (adjacentX == 0 && adjacentY == 0)
+                {
+                    continue;
+                }
+
+                int x = tileX + adjacentX;
+                int y = tileY + adjacentY;
+
+                if(GetTile(tileX, tileY).type == Tiles.Type.Mine)
+                {
+                    break;
+                }
+
+                if ((GetTile(x, y).type == Tiles.Type.Empty || GetTile(x, y).type == Tiles.Type.Number) && (GetTile(x,y).hidden == true) && (GetTile(x, y).flagged == false))
+                {
+                    state[x,y].hidden = false;
+                    if (IsValid(adjacentX, adjacentY))
+                    {
+                        Flood(x, y);
+                    } 
+                }
+
+            }
+        }
+
+    }
+
+    private void Update()//special unity function that updates on mosue click 
+    {
+        if (Input.GetMouseButtonDown(1))// right mouse button
         {
             Flag();
         }
+
+        if (Input.GetMouseButtonDown(0))// left mouse button
+        {
+            Reveal();
+
+        }
+
+
     }
 
-    private void Flag()
+    private void Flag()// flags a board tile
     {
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int tilePosition = board.tilemap.WorldToCell(worldPosition);
@@ -156,7 +199,6 @@ public class Game : MonoBehaviour
 
         if(tile.type == Tiles.Type.Invalid || !tile.hidden)
         {
-            //Debug.Log("Started");
             return;
         }
 
@@ -166,7 +208,36 @@ public class Game : MonoBehaviour
 
     }
 
-    private Tiles GetTile(int x , int y)
+    private void Reveal()// converts mouseclick to tile position and reveals the tiel if its a board tile but not flagged
+    {
+
+        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3Int tilePosition = board.tilemap.WorldToCell(worldPosition);
+
+        Tiles tile = GetTile(tilePosition.x, tilePosition.y);
+
+        if (tile.type == Tiles.Type.Invalid || tile.flagged)
+        {
+            return;
+        }
+
+        if(tile.hidden)
+        {
+            tile.hidden = false;
+        }
+
+        if(tile.type == Tiles.Type.Mine)
+        {
+            tile.hit = true;
+        }
+
+        state[tilePosition.x, tilePosition.y] = tile;
+        Flood(tilePosition.x, tilePosition.y);
+        board.Draw(state);
+
+    }
+
+    private Tiles GetTile(int x , int y)// gets tile location on board else it returns a invalid tile
     {
         if (IsValid(x, y))
         {
@@ -179,7 +250,7 @@ public class Game : MonoBehaviour
         }
     }
 
-    private bool IsValid(int x, int y)
+    private bool IsValid(int x, int y)// checks to see if a tile in the game is a valid board tile
     {
         return x>=0 && x < width && y>=0 && y < height;
     }
