@@ -5,6 +5,7 @@ using Unity.Mathematics;
 using Random = UnityEngine.Random;
 using UnityEngine;
 using Unity.VisualScripting;
+using UnityEngine.Tilemaps;
 
 public class Game : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Game : MonoBehaviour
 
     private Board board;
     private Tiles[,] state;
+    private bool gameover;
 
     private void Awake()
     {
@@ -176,6 +178,8 @@ public class Game : MonoBehaviour
 
     private void Update()//special unity function that updates on mosue click 
     {
+        if (!gameover) { 
+
         if (Input.GetMouseButtonDown(1))// right mouse button
         {
             Flag();
@@ -186,7 +190,7 @@ public class Game : MonoBehaviour
             Reveal();
 
         }
-
+    }
 
     }
 
@@ -229,6 +233,23 @@ public class Game : MonoBehaviour
         if(tile.type == Tiles.Type.Mine)
         {
             tile.hit = true;
+            gameover = true;
+        }
+
+        if (gameover == true)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    if (state[x,y].type == Tiles.Type.Mine)
+                    {
+                        state[x, y].hidden = false;
+                    }
+
+                }
+            }
+
         }
 
         state[tilePosition.x, tilePosition.y] = tile;
