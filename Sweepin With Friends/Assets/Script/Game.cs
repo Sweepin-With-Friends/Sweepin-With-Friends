@@ -18,6 +18,7 @@ public class Game : MonoBehaviour
     private Board board;
     private Tiles[,] state;
     private bool gameover;
+    private int score;
 
     private void Awake()
     {
@@ -168,7 +169,10 @@ public class Game : MonoBehaviour
                     if (IsValid(adjacentX, adjacentY))
                     {
                         Flood(x, y);
-                    } 
+                    }
+
+                    score++;
+
                 }
 
             }
@@ -190,7 +194,15 @@ public class Game : MonoBehaviour
             Reveal();
 
         }
-    }
+
+        if(Winner() == true)
+            {
+                gameover = true;
+                Debug.Log("You Win!!!");
+
+            }
+
+        }
 
     }
 
@@ -276,5 +288,44 @@ public class Game : MonoBehaviour
         return x>=0 && x < width && y>=0 && y < height;
     }
 
+
+    private bool Winner()// will check to see if all tiles are revealed other than mines, but all mins are flagged.
+    {
+
+        
+
+        for (int x = 0; x < width; x++)
+        {
+            int winMineCount = mineCount;
+            int totalTiles = width * height - mineCount;
+
+            for (int y = 0; y < height; y++)
+            {
+                Tiles tile = state[x, y];
+
+                if (tile.hidden == true && (tile.type != Tiles.Type.Mine))
+                {                 
+                    break;
+                }
+
+                if (tile.type == Tiles.Type.Mine && tile.flagged == true)
+                {
+                    winMineCount--;
+                    Debug.Log(winMineCount);
+
+                }
+
+                totalTiles--;
+
+                if (winMineCount == 0 && totalTiles == 0)
+                {
+                    return true;
+                }
+
+            }
+        }
+
+        return false;
+    }
 
 }
