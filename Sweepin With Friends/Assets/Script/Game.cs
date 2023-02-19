@@ -182,25 +182,26 @@ public class Game : MonoBehaviour
 
     private void Update()//special unity function that updates on mosue click 
     {
-        if (!gameover) { 
+        if (!gameover)
+        { 
 
-        if (Input.GetMouseButtonDown(1))// right mouse button
-        {
-            Flag();
-        }
-
-        if (Input.GetMouseButtonDown(0))// left mouse button
-        {
-            Reveal();
-
-        }
-
-        if(Winner() == true)
+            if (Input.GetMouseButtonDown(1))// right mouse button
             {
-                gameover = true;
-                Debug.Log("You Win!!!");
+                Flag();
+            }
+
+            if (Input.GetMouseButtonDown(0))// left mouse button
+            {
+                Reveal();
 
             }
+
+            if(Winner() == true)
+                {
+                    gameover = true;
+                    Debug.Log("You Win!!!");
+
+                }
 
         }
 
