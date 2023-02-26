@@ -150,13 +150,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 452438306}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c154e33ab30c7814c901e8c6ee66d724, type: 3}
+  m_Script: {fileID: 11500000, guid: 55a72113827f380408a07e8640fe8183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   width: 16
   height: 16
-  mineCount: 1
-  cameraPadding: 2
+  mineCount: 32
 --- !u!156049354 &452438308
 Grid:
   m_ObjectHideFlags: 0
@@ -228,22 +227,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 864749997}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65f0f74df0be0a94dbaf4dc2887444d3, type: 3}
+  m_Script: {fileID: 11500000, guid: d469d2ff778b5784a998322866ce8cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileUnknown: {fileID: 11400000, guid: c9e0dfac6aca59e4fa62fc7cb3e9c393, type: 2}
-  tileEmpty: {fileID: 11400000, guid: 88f87a91b7c184d4e8ea560bdae6f75b, type: 2}
-  tileMine: {fileID: 11400000, guid: bcf5df4b168786f42a45bc4470d6faab, type: 2}
-  tileHit: {fileID: 11400000, guid: 4a3f79736f6eacf48958b19e553eb172, type: 2}
-  tileFlag: {fileID: 11400000, guid: 20cd80d069509dd47bdf3ef3ca1e746f, type: 2}
-  tileOne: {fileID: 11400000, guid: d8dbc323b5264b14fad17c74058c7770, type: 2}
-  tileTwo: {fileID: 11400000, guid: e75daa342abfa0c4c833ca914afffc45, type: 2}
-  tileThree: {fileID: 11400000, guid: 58d947cbc2ddcde40b5c1f9b43c6c359, type: 2}
-  tileFour: {fileID: 11400000, guid: 9370097ad95a7ee44889297470bfb323, type: 2}
-  tileFive: {fileID: 11400000, guid: 503c086f1e249fd43bd6dfbfb0f047ff, type: 2}
-  tileSix: {fileID: 11400000, guid: adca2ac63615ed6459b9498bb6f02ec0, type: 2}
-  tileSeven: {fileID: 11400000, guid: 96c09d18f33f0394b812c3983cb0dcfa, type: 2}
-  tileEight: {fileID: 11400000, guid: 58c3bd038ed7a3a4ca035e5a31fdd0d3, type: 2}
+  tileUnknown: {fileID: 0}
+  tileEmpty: {fileID: 0}
+  tileMine: {fileID: 0}
+  tileExploded: {fileID: 0}
+  tileFlag: {fileID: 0}
+  tileNum1: {fileID: 11400000, guid: e77681c8f5a91c7418f9339b1dd7618e, type: 2}
+  tileNum2: {fileID: 0}
+  tileNum3: {fileID: 0}
+  tileNum4: {fileID: 0}
+  tileNum5: {fileID: 0}
+  tileNum6: {fileID: 0}
+  tileNum7: {fileID: 0}
+  tileNum8: {fileID: 0}
 --- !u!483693784 &864750000
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -359,30 +358,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 953298780}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Script: {fileID: 11500000, guid: 55a72113827f380408a07e8640fe8183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
-  m_Cameras: []
-  m_RendererIndex: -1
-  m_VolumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
-  m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
-  m_ClearDepth: 1
-  m_AllowXRRendering: 1
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_Version: 2
+  width: 16
+  height: 16
+  mineCount: 32
 --- !u!81 &953298782
 AudioListener:
   m_ObjectHideFlags: 0
@@ -390,7 +371,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953298780}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &953298783
 Camera:
   m_ObjectHideFlags: 0
