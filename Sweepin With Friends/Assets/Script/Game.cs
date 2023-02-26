@@ -20,6 +20,7 @@ public class Game : MonoBehaviour
     private bool gameover;
     private int score;
 
+    
     private void Awake()
     {
         board = GetComponentInChildren<Board>();
@@ -196,13 +197,14 @@ public class Game : MonoBehaviour
 
             }
 
+            
             if(Winner() == true)
                 {
                     gameover = true;
                     Debug.Log("You Win!!!");
 
                 }
-
+            
         }
 
     }
@@ -312,7 +314,7 @@ public class Game : MonoBehaviour
                 if (tile.type == Tiles.Type.Mine && tile.flagged == true)
                 {
                     winMineCount--;
-                    Debug.Log(winMineCount);
+                   // Debug.Log(winMineCount);
 
                 }
 
