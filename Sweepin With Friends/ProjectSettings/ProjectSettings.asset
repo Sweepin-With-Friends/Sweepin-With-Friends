@@ -756,11 +756,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: 8276c444-12d3-4d73-810c-0bc15d834918
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Sweepin With Friends
+  organizationId: sweepin-with-friends
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
