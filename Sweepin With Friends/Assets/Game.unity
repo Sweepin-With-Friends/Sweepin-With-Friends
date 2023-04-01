@@ -153,9 +153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a72113827f380408a07e8640fe8183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 16
-  height: 16
-  mineCount: 32
+  width: 10
+  height: 10
+  mineCount: 20
 --- !u!156049354 &452438308
 Grid:
   m_ObjectHideFlags: 0
