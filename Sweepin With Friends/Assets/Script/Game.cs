@@ -24,7 +24,12 @@ public class Game : MonoBehaviour
 
     private void Start()
     {
-        NewGame();
+
+     width = MainMenu.width;
+     height = MainMenu.height;
+     mineCount = MainMenu.mines;
+
+    NewGame();
     }
 
     private void NewGame()
