@@ -13,4 +13,10 @@ public class SceneChange : MonoBehaviour
     {
         SceneManager.LoadScene(Sound, LoadSceneMode.Additive);
     }
+
+    public void LoadMenu(string Menu)
+    {
+        SceneManager.LoadScene(Menu);
+    }
+
 }
