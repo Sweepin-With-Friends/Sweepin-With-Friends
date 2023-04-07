@@ -2,21 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UserProfile
+public class UserProfile : MonoBehaviour
 {
-    public int UserID;
+    public int UserID { get; set; } 
 
-    public string Email;
+    public string Email { get; set; } = string.Empty;
 
-    public string Username;
+    public string Username { get; set; } = string.Empty;
 
-    public string AvatarUrl;
+    public string AvatarUrl { get; set; } = string.Empty;
 
-    public string Salt;
+    public string Salt { get; set; }
 
-    public string PasswordHash;
+    public string PasswordHash { get; set; }
 
-    public int GameID;
+    public int GameID { get; set; }
 
 
 }
