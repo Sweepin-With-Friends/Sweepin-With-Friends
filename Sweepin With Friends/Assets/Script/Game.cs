@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Game : MonoBehaviour
 {
-    public int width = MainMenu.width;
-    public int height = MainMenu.height;
-    public int mineCount = MainMenu.mines;
+    public int width = 10;
+    public int height = 10;
+    public int mineCount = 20;
 
     private Board board;
     private Cell[,] state;
@@ -24,10 +24,6 @@ public class Game : MonoBehaviour
 
     private void Start()
     {
-        width = MainMenu.width;
-        height = MainMenu.height;
-        mineCount = MainMenu.mines;
-
         NewGame();
     }
 
