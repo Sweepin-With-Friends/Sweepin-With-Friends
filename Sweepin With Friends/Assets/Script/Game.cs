@@ -2,17 +2,13 @@ using UnityEngine;
 
 public class Game : MonoBehaviour
 {
-    public int width = 10;
-    public int height = 10;
-    public int mineCount = 20;
-
     private Board board;
     private Cell[,] state;
     private bool gameover;
 
     private void OnValidate()
     {
-        mineCount = Mathf.Clamp(mineCount, 0, width * height);
+        MainMenu.mineCount = Mathf.Clamp(MainMenu.mineCount, 0, MainMenu.width * MainMenu.height);
     }
 
     private void Awake()
@@ -29,22 +25,22 @@ public class Game : MonoBehaviour
 
     private void NewGame()
     {
-        state = new Cell[width, height];
+        state = new Cell[MainMenu.width, MainMenu.height];
         gameover = false;
 
         GenerateCells();
         GenerateMines();
         GenerateNumbers();
 
-        Camera.main.transform.position = new Vector3(width / 2f, height / 2f, -10f);
+        Camera.main.transform.position = new Vector3(MainMenu.width / 2f, MainMenu.height / 2f, -10f);
         board.Draw(state);
     }
 
     private void GenerateCells()
     {
-        for (int x = 0; x < width; x++)
+        for (int x = 0; x < MainMenu.width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < MainMenu.height; y++)
             {
                 Cell cell = new Cell();
                 cell.position = new Vector3Int(x, y, 0);
@@ -56,21 +52,21 @@ public class Game : MonoBehaviour
 
     private void GenerateMines()
     {
-        for (int i = 0; i < mineCount; i++)
+        for (int i = 0; i < MainMenu.mineCount; i++)
         {
-            int x = Random.Range(0, width);
-            int y = Random.Range(0, height);
+            int x = Random.Range(0, MainMenu.width);
+            int y = Random.Range(0, MainMenu.height);
 
             while (state[x, y].type == Cell.Type.Mine)
             {
                 x++;
 
-                if (x >= width)
+                if (x >= MainMenu.width)
                 {
                     x = 0;
                     y++;
 
-                    if (y >= height) {
+                    if (y >= MainMenu.height) {
                         y = 0;
                     }
                 }
@@ -82,9 +78,9 @@ public class Game : MonoBehaviour
 
     private void GenerateNumbers()
     {
-        for (int x = 0; x < width; x++)
+        for (int x = 0; x < MainMenu.width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < MainMenu.height; y++)
             {
                 Cell cell = state[x, y];
 
@@ -221,9 +217,9 @@ public class Game : MonoBehaviour
         state[cell.position.x, cell.position.y] = cell;
 
         // Reveal all other mines
-        for (int x = 0; x < width; x++)
+        for (int x = 0; x < MainMenu.width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < MainMenu.height; y++)
             {
                 cell = state[x, y];
 
@@ -238,9 +234,9 @@ public class Game : MonoBehaviour
 
     private void CheckWinCondition()
     {
-        for (int x = 0; x < width; x++)
+        for (int x = 0; x < MainMenu.width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < MainMenu.height; y++)
             {
                 Cell cell = state[x, y];
 
@@ -255,9 +251,9 @@ public class Game : MonoBehaviour
         gameover = true;
 
         // Flag all the mines
-        for (int x = 0; x < width; x++)
+        for (int x = 0; x < MainMenu.width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < MainMenu.height; y++)
             {
                 Cell cell = state[x, y];
 
@@ -281,7 +277,7 @@ public class Game : MonoBehaviour
 
     private bool IsValid(int x, int y)
     {
-        return x >= 0 && x < width && y >= 0 && y < height;
+        return x >= 0 && x < MainMenu.width && y >= 0 && y < MainMenu.height;
     }
 
 }

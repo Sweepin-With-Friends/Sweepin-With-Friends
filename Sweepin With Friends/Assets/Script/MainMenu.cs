@@ -6,29 +6,31 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    
+    public static int width = 10;
+    public static int height = 10;
+    public static int mineCount = 20;
 
     public void PlayGameEasy(string Game)
     {
-        newGame.width = 10;
-        newGame.height = 10;
-        newGame.mineCount = 20;
+        width = 10;
+        height = 10;
+        mineCount = 20;
         SceneManager.LoadScene(Game);
     }
 
     public void PlayGameMedium(string Game)
     {
-        newGame.width = 16;
-        newGame.height = 16;
-        newGame.mineCount = 32;
+        width = 16;
+        height = 16;
+        mineCount = 32;
         SceneManager.LoadScene(Game);
     }
 
     public void PlayGameHard(string Game)
     {
-        newGame.width = 25;
-        newGame.height = 25;
-        newGame.mineCount = 100;
+        width = 25;
+        height = 25;
+        mineCount = 100;
         SceneManager.LoadScene(Game);
     }
 
