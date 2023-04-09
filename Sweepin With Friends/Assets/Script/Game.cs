@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Game : MonoBehaviour
 {
     private Board board;
     private Cell[,] state;
     private bool gameover;
+    public int cameraPadding = 100;
+    // private Tilemap tilemap;
 
     private void OnValidate()
     {
@@ -18,8 +21,9 @@ public class Game : MonoBehaviour
         board = GetComponentInChildren<Board>();
     }
 
-    private void Start()
+    public void Start()
     {
+        Debug.Log("Start() method called");
         NewGame();
     }
 
@@ -28,11 +32,16 @@ public class Game : MonoBehaviour
         state = new Cell[MainMenu.width, MainMenu.height];
         gameover = false;
 
+        Debug.Log("NewGame() method called");
+
         GenerateCells();
         GenerateMines();
         GenerateNumbers();
 
         Camera.main.transform.position = new Vector3(MainMenu.width / 2f, MainMenu.height / 2f, -10f);
+        Camera.main.orthographicSize = Mathf.Max(MainMenu.width, MainMenu.height) * 30f + cameraPadding;
+
+        board.tilemap.transform.position = new Vector3(0 - (MainMenu.width / 2f) * 50, 0 - (MainMenu.height / 2f) * 50);
         board.Draw(state);
     }
 
