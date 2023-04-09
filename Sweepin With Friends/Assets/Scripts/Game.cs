@@ -183,6 +183,7 @@ public class Game : MonoBehaviour
             default:
                 cell.revealed = true;
                 state[cellPosition.x, cellPosition.y] = cell;
+                //ScoreScript.scoreValue += 10;
                 CheckWinCondition();
                 break;
         }
