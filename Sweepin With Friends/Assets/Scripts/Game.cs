@@ -1,10 +1,16 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
     public int width = 16;
     public int height = 16;
     public int mineCount = 32;
+
+    public int playerScore;
 
     private Board board;
     private Cell[,] state;
@@ -25,6 +31,7 @@ public class Game : MonoBehaviour
     private void Start()
     {
         NewGame();
+        
     }
 
     private void NewGame()
@@ -158,8 +165,9 @@ public class Game : MonoBehaviour
         board.Draw(state);
     }
 
-    private void Reveal()
+    void Reveal()
     {
+
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int cellPosition = board.tilemap.WorldToCell(worldPosition);
         Cell cell = GetCell(cellPosition.x, cellPosition.y);
@@ -173,17 +181,22 @@ public class Game : MonoBehaviour
         {
             case Cell.Type.Mine:
                 Explode(cell);
+                playerScore -= 3;
+                GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
                 break;
 
             case Cell.Type.Empty:
                 Flood(cell);
+                playerScore += 5;
+                GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
                 CheckWinCondition();
                 break;
 
             default:
                 cell.revealed = true;
                 state[cellPosition.x, cellPosition.y] = cell;
-                //ScoreScript.scoreValue += 10;
+                playerScore++;
+                GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
                 CheckWinCondition();
                 break;
         }
@@ -235,6 +248,7 @@ public class Game : MonoBehaviour
                 }
             }
         }
+        SceneManager.LoadScene(0);
     }
 
     private void CheckWinCondition()

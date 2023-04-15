@@ -7,7 +7,8 @@ using System.Diagnostics;
 
 public class Timer : MonoBehaviour
 {
-
+    public static Timer instance;
+    
     [Header("Component")]
     public TextMeshProUGUI timerText;
 
@@ -24,7 +25,7 @@ public class Timer : MonoBehaviour
     public TimerFormats format;
     private Dictionary<TimerFormats, string> timeFormats = new Dictionary<TimerFormats, string>();
 
-
+    
     // Start is called before the first frame update
     void Start()
     {
