@@ -4,7 +4,7 @@ using UnityEngine;
 using Unity.Networking.Transport;
 using Unity.Collections;
 using System;
-using UnityEditorInternal.Profiling;
+//using UnityEditorInternal.Profiling;
 
 public class Server : MonoBehaviour
 {
@@ -70,7 +70,7 @@ public class Server : MonoBehaviour
             return;
         }
 
-        KeepAlive();
+        //KeepAlive();
 
         driver.ScheduleUpdate().Complete();
         CleanupConnections();
