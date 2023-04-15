@@ -4,7 +4,7 @@ using UnityEngine;
 using Unity.Networking.Transport;
 using Unity.Collections;
 using System;
-using UnityEditorInternal.Profiling;
+//using UnityEditorInternal.Profiling;
 
 public class Client : MonoBehaviour
 {
@@ -68,8 +68,8 @@ public class Client : MonoBehaviour
 
         CheckAlive();
 
-        CleanupConnections();
-        AcceptNewConnections();
+        //CleanupConnections();
+        //AcceptNewConnections();
         UpdateMessagePump();
 
     }
@@ -94,13 +94,13 @@ public class Client : MonoBehaviour
                 if (cmd == NetworkEvent.Type.Connect)
                 {
 
-                SendToServer(new NetWelcome());
+                //SendToServer(new NetWelcome());
 
                 }
                 else if (cmd == NetworkEvent.Type.Data)
             {
     
-                NetUtility.OnData(stream, default(NetworkConnection));
+                //NetUtility.OnData(stream, default(NetworkConnection));
 
             }
                 else if (cmd == NetworkEvent.Type.Disconnect)
@@ -126,13 +126,13 @@ public class Client : MonoBehaviour
 
     private void RegisterToEvent()
     {
-        NetUtility.C_KEEP_ALIVE += OnKeepAlive;
+        //NetUtility.C_KEEP_ALIVE += OnKeepAlive;
 
     }
 
     private void UnregisterToEvent() {
 
-        NetUtility.C_KEEP_ALIVE -= OnKeepAlive;
+        //NetUtility.C_KEEP_ALIVE -= OnKeepAlive;
 
     }
 

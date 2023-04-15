@@ -110,7 +110,7 @@ public class Server : MonoBehaviour
             
                 if(cmd== NetworkEvent.Type.Data) {
                 
-                    NetUtility.OnData(stream, connections[i],this);
+                    //NetUtility.OnData(stream, connections[i],this);
 
                 }
                 else if(cmd == NetworkEvent.Type.Disconnect){
@@ -124,13 +124,13 @@ public class Server : MonoBehaviour
         }
     }
 
-    public void Broadcast(NetMessge msg)
+    public void Broadcast(NetMessage msg)
     {
         for (int i = 0; i < connections.Length; i++)
         {
             if (connections[i].IsCreated)
             {
-                SendtoCLient(connections[i],msg);
+                //SendtoCLient(connections[i],msg);
             }
         }
     }
