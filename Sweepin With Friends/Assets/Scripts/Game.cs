@@ -183,12 +183,14 @@ public class Game : MonoBehaviour
                 Explode(cell);
                 playerScore -= 3;
                 GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
+                AudioManager.instance.Play("GameOver");
                 break;
 
             case Cell.Type.Empty:
                 Flood(cell);
                 playerScore += 5;
                 GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
+                AudioManager.instance.Play("FloodNoise");
                 CheckWinCondition();
                 break;
 
@@ -197,6 +199,7 @@ public class Game : MonoBehaviour
                 state[cellPosition.x, cellPosition.y] = cell;
                 playerScore++;
                 GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
+                AudioManager.instance.Play("PointNoise");
                 CheckWinCondition();
                 break;
         }
