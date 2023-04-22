@@ -161,6 +161,7 @@ public class Game : MonoBehaviour
         }
 
         cell.flagged = !cell.flagged;
+        AudioManager.instance.Play("FlagNoise");
         state[cellPosition.x, cellPosition.y] = cell;
         board.Draw(state);
     }
