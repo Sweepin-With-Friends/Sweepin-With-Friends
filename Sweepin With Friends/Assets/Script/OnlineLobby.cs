@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class OnlineLobby : MonoBehaviour
-{ 
+{
     public static OnlineLobby Instance { get; set; }
 
-    
+    public Server server;
+    public Client client;
+
+    [SerializeField] private TMP_InputField addressInput;
+
+
     private void Awake()
     {
         Instance = this;
@@ -14,11 +20,14 @@ public class OnlineLobby : MonoBehaviour
 
 
 
-    
+
     public void OnLocalGameButton()
     {
+
+        server.Init(8007);
+        client.Init("127.0.0.1", 8007);
         Debug.Log("OnLocalGameButton");
-        
+
     }
 
     public void OnOnlineGameButton()
@@ -29,12 +38,15 @@ public class OnlineLobby : MonoBehaviour
 
     public void OnOnlineHostButton()
     {
+        server.Init(8007);
+        client.Init("127.0.0.1", 8007);
         Debug.Log("OnOnlineHostButton");
 
     }
     public void OnOnlineConnectButton()
     {
-        Debug.Log("OnOnlineConnectButton");
+        client.Init(addressInput.text, 8007);
+        
 
     }
 
@@ -44,5 +56,11 @@ public class OnlineLobby : MonoBehaviour
 
     }
 
+    public void OnHostBackButton()
+    {
+        server.Shutdown();
+        client.Shutdown();
+
+    }
 
 }

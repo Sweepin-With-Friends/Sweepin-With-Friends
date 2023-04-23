@@ -68,11 +68,12 @@ public class Client : MonoBehaviour
 
         CheckAlive();
 
-        //CleanupConnections();
-        //AcceptNewConnections();
+ 
+
         UpdateMessagePump();
 
     }
+
 
     private void CheckAlive()
     {
@@ -95,12 +96,15 @@ public class Client : MonoBehaviour
                 {
 
                 //SendToServer(new NetWelcome());
+                Debug.Log("We're connected!");
+
+                
 
                 }
                 else if (cmd == NetworkEvent.Type.Data)
             {
     
-                //NetUtility.OnData(stream, default(NetworkConnection));
+                NetUtility.OnData(stream, default(NetworkConnection));
 
             }
                 else if (cmd == NetworkEvent.Type.Disconnect)
@@ -126,13 +130,13 @@ public class Client : MonoBehaviour
 
     private void RegisterToEvent()
     {
-        //NetUtility.C_KEEP_ALIVE += OnKeepAlive;
+        NetUtility.C_KEEP_ALIVE += OnKeepAlive;
 
     }
 
     private void UnregisterToEvent() {
 
-        //NetUtility.C_KEEP_ALIVE -= OnKeepAlive;
+        NetUtility.C_KEEP_ALIVE -= OnKeepAlive;
 
     }
 

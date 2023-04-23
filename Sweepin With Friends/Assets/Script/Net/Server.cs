@@ -70,13 +70,22 @@ public class Server : MonoBehaviour
             return;
         }
 
-        //KeepAlive();
+        KeepAlive();
 
         driver.ScheduleUpdate().Complete();
         CleanupConnections();
         AcceptNewConnections();
         UpdateMessagePump();
 
+    }
+
+    private void KeepAlive()
+    {
+        if(Time.time - lastKeepAlive > keepAliveTickRate)
+        {
+            lastKeepAlive= Time.time;
+            Broadcast(new NetKeepAlive());
+        }
     }
 
     private void CleanupConnections()
@@ -110,7 +119,7 @@ public class Server : MonoBehaviour
             
                 if(cmd== NetworkEvent.Type.Data) {
                 
-                    //NetUtility.OnData(stream, connections[i],this);
+                   NetUtility.OnData(stream, connections[i],this);
 
                 }
                 else if(cmd == NetworkEvent.Type.Disconnect){
@@ -130,7 +139,7 @@ public class Server : MonoBehaviour
         {
             if (connections[i].IsCreated)
             {
-                //SendtoCLient(connections[i],msg);
+                SendToClient(connections[i],msg);
             }
         }
     }
