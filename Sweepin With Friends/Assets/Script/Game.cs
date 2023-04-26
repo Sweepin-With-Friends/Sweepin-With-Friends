@@ -1,24 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
 public class Game : MonoBehaviour
 {
-    public int width = 16;
-    public int height = 16;
-    public int mineCount = 32;
-
-    public int playerScore;
-
     private Board board;
     private Cell[,] state;
     private bool gameover;
+    public int cameraPadding = 100;
+    // private Tilemap tilemap;
 
     private void OnValidate()
     {
-        mineCount = Mathf.Clamp(mineCount, 0, width * height);
+        MainMenu.mineCount = Mathf.Clamp(MainMenu.mineCount, 0, MainMenu.width * MainMenu.height);
     }
 
     private void Awake()
@@ -28,30 +21,35 @@ public class Game : MonoBehaviour
         board = GetComponentInChildren<Board>();
     }
 
-    private void Start()
+    public void Start()
     {
+        Debug.Log("Start() method called");
         NewGame();
-        
     }
 
     private void NewGame()
     {
-        state = new Cell[width, height];
+        state = new Cell[MainMenu.width, MainMenu.height];
         gameover = false;
+
+        Debug.Log("NewGame() method called");
 
         GenerateCells();
         GenerateMines();
         GenerateNumbers();
 
-        Camera.main.transform.position = new Vector3(width / 2f, height / 2f, -10f);
+        Camera.main.transform.position = new Vector3(MainMenu.width / 2f, MainMenu.height / 2f, -10f);
+        Camera.main.orthographicSize = Mathf.Max(MainMenu.width, MainMenu.height) * 30f + cameraPadding;
+
+        board.tilemap.transform.position = new Vector3(0 - (MainMenu.width / 2f) * 50, 0 - (MainMenu.height / 2f) * 50);
         board.Draw(state);
     }
 
     private void GenerateCells()
     {
-        for (int x = 0; x < width; x++)
+        for (int x = 0; x < MainMenu.width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < MainMenu.height; y++)
             {
                 Cell cell = new Cell();
                 cell.position = new Vector3Int(x, y, 0);
@@ -63,21 +61,21 @@ public class Game : MonoBehaviour
 
     private void GenerateMines()
     {
-        for (int i = 0; i < mineCount; i++)
+        for (int i = 0; i < MainMenu.mineCount; i++)
         {
-            int x = Random.Range(0, width);
-            int y = Random.Range(0, height);
+            int x = Random.Range(0, MainMenu.width);
+            int y = Random.Range(0, MainMenu.height);
 
             while (state[x, y].type == Cell.Type.Mine)
             {
                 x++;
 
-                if (x >= width)
+                if (x >= MainMenu.width)
                 {
                     x = 0;
                     y++;
 
-                    if (y >= height) {
+                    if (y >= MainMenu.height) {
                         y = 0;
                     }
                 }
@@ -89,9 +87,9 @@ public class Game : MonoBehaviour
 
     private void GenerateNumbers()
     {
-        for (int x = 0; x < width; x++)
+        for (int x = 0; x < MainMenu.width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < MainMenu.height; y++)
             {
                 Cell cell = state[x, y];
 
@@ -161,14 +159,12 @@ public class Game : MonoBehaviour
         }
 
         cell.flagged = !cell.flagged;
-        AudioManager.instance.Play("FlagNoise");
         state[cellPosition.x, cellPosition.y] = cell;
         board.Draw(state);
     }
 
-    void Reveal()
+    private void Reveal()
     {
-
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int cellPosition = board.tilemap.WorldToCell(worldPosition);
         Cell cell = GetCell(cellPosition.x, cellPosition.y);
@@ -182,25 +178,16 @@ public class Game : MonoBehaviour
         {
             case Cell.Type.Mine:
                 Explode(cell);
-                playerScore -= 3;
-                GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
-                AudioManager.instance.Play("GameOver");
                 break;
 
             case Cell.Type.Empty:
                 Flood(cell);
-                playerScore += 5;
-                GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
-                AudioManager.instance.Play("FloodNoise");
                 CheckWinCondition();
                 break;
 
             default:
                 cell.revealed = true;
                 state[cellPosition.x, cellPosition.y] = cell;
-                playerScore++;
-                GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
-                AudioManager.instance.Play("PointNoise");
                 CheckWinCondition();
                 break;
         }
@@ -239,9 +226,9 @@ public class Game : MonoBehaviour
         state[cell.position.x, cell.position.y] = cell;
 
         // Reveal all other mines
-        for (int x = 0; x < width; x++)
+        for (int x = 0; x < MainMenu.width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < MainMenu.height; y++)
             {
                 cell = state[x, y];
 
@@ -252,14 +239,13 @@ public class Game : MonoBehaviour
                 }
             }
         }
-        SceneManager.LoadScene(0);
     }
 
     private void CheckWinCondition()
     {
-        for (int x = 0; x < width; x++)
+        for (int x = 0; x < MainMenu.width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < MainMenu.height; y++)
             {
                 Cell cell = state[x, y];
 
@@ -274,9 +260,9 @@ public class Game : MonoBehaviour
         gameover = true;
 
         // Flag all the mines
-        for (int x = 0; x < width; x++)
+        for (int x = 0; x < MainMenu.width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < MainMenu.height; y++)
             {
                 Cell cell = state[x, y];
 
@@ -300,7 +286,7 @@ public class Game : MonoBehaviour
 
     private bool IsValid(int x, int y)
     {
-        return x >= 0 && x < width && y >= 0 && y < height;
+        return x >= 0 && x < MainMenu.width && y >= 0 && y < MainMenu.height;
     }
 
 }
