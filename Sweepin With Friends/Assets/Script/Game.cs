@@ -1,10 +1,16 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
-    public int width = MainMenu.width;
-    public int height = MainMenu.height;
-    public int mineCount = MainMenu.mines;
+    public int width = 16;
+    public int height = 16;
+    public int mineCount = 32;
+
+    public int playerScore;
 
     private Board board;
     private Cell[,] state;
@@ -24,12 +30,8 @@ public class Game : MonoBehaviour
 
     private void Start()
     {
-
-     width = MainMenu.width;
-     height = MainMenu.height;
-     mineCount = MainMenu.mines;
-
-    NewGame();
+        NewGame();
+        
     }
 
     private void NewGame()
@@ -159,12 +161,14 @@ public class Game : MonoBehaviour
         }
 
         cell.flagged = !cell.flagged;
+        AudioManager.instance.Play("FlagNoise");
         state[cellPosition.x, cellPosition.y] = cell;
         board.Draw(state);
     }
 
-    private void Reveal()
+    void Reveal()
     {
+
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int cellPosition = board.tilemap.WorldToCell(worldPosition);
         Cell cell = GetCell(cellPosition.x, cellPosition.y);
@@ -178,16 +182,25 @@ public class Game : MonoBehaviour
         {
             case Cell.Type.Mine:
                 Explode(cell);
+                playerScore -= 3;
+                GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
+                AudioManager.instance.Play("GameOver");
                 break;
 
             case Cell.Type.Empty:
                 Flood(cell);
+                playerScore += 5;
+                GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
+                AudioManager.instance.Play("FloodNoise");
                 CheckWinCondition();
                 break;
 
             default:
                 cell.revealed = true;
                 state[cellPosition.x, cellPosition.y] = cell;
+                playerScore++;
+                GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
+                AudioManager.instance.Play("PointNoise");
                 CheckWinCondition();
                 break;
         }
@@ -239,6 +252,7 @@ public class Game : MonoBehaviour
                 }
             }
         }
+        SceneManager.LoadScene(0);
     }
 
     private void CheckWinCondition()
