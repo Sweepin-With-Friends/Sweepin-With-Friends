@@ -1,3 +1,4 @@
+using Unity.Networking.Transport;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -7,6 +8,8 @@ public class Game : MonoBehaviour
     private Cell[,] state;
     private bool gameover;
     public int cameraPadding = 100;
+    private int playerCount = -1;
+    private int currentTeam = -1;
     // private Tilemap tilemap;
 
     private void OnValidate()
@@ -16,9 +19,15 @@ public class Game : MonoBehaviour
 
     private void Awake()
     {
+
+        //isClientTurn = true;
+
         Application.targetFrameRate = 60;
 
         board = GetComponentInChildren<Board>();
+
+        RegisterEvents();
+
     }
 
     public void Start()
@@ -288,5 +297,57 @@ public class Game : MonoBehaviour
     {
         return x >= 0 && x < MainMenu.width && y >= 0 && y < MainMenu.height;
     }
+
+
+
+    private void RegisterEvents()
+    {
+        NetUtility.S_WELCOME += OnWelcomeServer;
+
+        NetUtility.C_WELCOME-= OnWelcomeClient;
+
+        NetUtility.C_START_GAME += OnStartGameClient;
+
+    }
+
+    private void UnRegisterEvents()
+    {
+
+    }
+
+    private void OnWelcomeServer(NetMessage msg, NetworkConnection cnn) {
+    
+        NetWelcome nw = msg as NetWelcome;
+
+        nw.AssignedTeam = ++playerCount;
+
+        Server.Instance.SendToClient(cnn, nw);
+
+        if(playerCount== 1) {
+
+            Server.Instance.Broadcast(new NetStartGame());
+
+        }
+    }
+
+    private void OnWelcomeClient(NetMessage msg)
+    {
+
+        NetWelcome nw = msg as NetWelcome;
+
+        currentTeam = nw.AssignedTeam;
+
+        Debug.Log($"Team is {nw.AssignedTeam}");
+
+    }
+
+    private void OnStartGameClient(NetMessage Obj) {
+
+
+    
+    }
+
+
+
 
 }

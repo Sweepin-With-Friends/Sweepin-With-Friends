@@ -95,7 +95,7 @@ public class Client : MonoBehaviour
                 if (cmd == NetworkEvent.Type.Connect)
                 {
 
-                //SendToServer(new NetWelcome());
+                SendToServer(new NetWelcome());
                 Debug.Log("We're connected!");
 
                 
@@ -109,7 +109,8 @@ public class Client : MonoBehaviour
             }
                 else if (cmd == NetworkEvent.Type.Disconnect)
                 {
-                   connection = default(NetworkConnection) ;
+                Debug.Log("Disconneted!");
+                connection = default(NetworkConnection) ;
                 connectionDropped?.Invoke();
                 Shutdown();
 
