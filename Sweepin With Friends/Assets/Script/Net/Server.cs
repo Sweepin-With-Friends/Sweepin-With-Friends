@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Networking.Transport;
 using Unity.Collections;
 using System;
+using UnityEngine.SceneManagement;
 //using UnityEditorInternal.Profiling;
 
 public class Server : MonoBehaviour
@@ -120,6 +121,8 @@ public class Server : MonoBehaviour
                 if(cmd== NetworkEvent.Type.Data) {
                 
                    NetUtility.OnData(stream, connections[i],this);
+
+                    SceneManager.LoadScene("Game", LoadSceneMode.Single);
 
                 }
                 else if(cmd == NetworkEvent.Type.Disconnect){
