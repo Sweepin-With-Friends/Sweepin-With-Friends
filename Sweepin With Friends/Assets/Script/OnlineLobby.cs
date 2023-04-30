@@ -42,12 +42,16 @@ public class OnlineLobby : MonoBehaviour
         client.Init("127.0.0.1", 8007);
         Debug.Log("OnOnlineHostButton");
 
+
+
     }
     public void OnOnlineConnectButton()
     {
         Debug.Log("Game Over!");
         client.Init(addressInput.text, 8007);
         //client.Init("127.0.0.1", 8007);
+
+
 
 
     }

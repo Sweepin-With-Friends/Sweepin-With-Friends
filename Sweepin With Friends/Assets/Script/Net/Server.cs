@@ -122,8 +122,6 @@ public class Server : MonoBehaviour
                 
                    NetUtility.OnData(stream, connections[i],this);
 
-                    SceneManager.LoadScene("Game", LoadSceneMode.Single);
-
                 }
                 else if(cmd == NetworkEvent.Type.Disconnect){
                     connections[i] = default(NetworkConnection);
@@ -143,6 +141,7 @@ public class Server : MonoBehaviour
             if (connections[i].IsCreated)
             {
                 SendToClient(connections[i],msg);
+                
             }
         }
     }

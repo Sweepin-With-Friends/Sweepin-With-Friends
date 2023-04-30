@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 //using Game;
 
-public class MainMenu : MonoBehaviour
+public class MainMenu : Game
 {
     public static int width = 10;
     public static int height = 10;
@@ -15,7 +15,9 @@ public class MainMenu : MonoBehaviour
         width = 10;
         height = 10;
         mineCount = 20;
-        SceneManager.LoadScene(Game);
+        
+       
+
     }
 
     public void PlayGameMedium(string Game)
@@ -23,7 +25,8 @@ public class MainMenu : MonoBehaviour
         width = 16;
         height = 16;
         mineCount = 32;
-        SceneManager.LoadScene(Game);
+        Start();
+        
     }
 
     public void PlayGameHard(string Game)
@@ -31,7 +34,7 @@ public class MainMenu : MonoBehaviour
         width = 25;
         height = 25;
         mineCount = 100;
-        SceneManager.LoadScene(Game);
+        Start();
     }
 
     public void QuitGame()
