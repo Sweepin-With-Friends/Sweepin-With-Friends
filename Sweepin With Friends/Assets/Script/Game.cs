@@ -16,7 +16,8 @@ public class Game : MonoBehaviour
     private int currentTeam = -1;
     // private Tilemap tilemap;
 
-    public int playerScore;
+    public int playerScore = 0;
+    public TextMeshProUGUI scoreUI;
 
     private void OnValidate()
     {
@@ -149,6 +150,10 @@ public class Game : MonoBehaviour
 
     private void Update()
     {
+
+        scoreUI.text = playerScore.ToString();
+
+
         if (Input.GetKeyDown(KeyCode.R)) {
             NewGame();
         }
@@ -195,15 +200,15 @@ public class Game : MonoBehaviour
             case Cell.Type.Mine:
                 Explode(cell);
                 playerScore -= 3;
-                GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
-                AudioManager.instance.Play("GameOver");
+                //GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
+                //AudioManager.instance.Play("GameOver");
                 break;
 
             case Cell.Type.Empty:
                 Flood(cell);
                 playerScore += 5;
-                GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
-                AudioManager.instance.Play("FloodNoise");
+                //GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
+                //AudioManager.instance.Play("FloodNoise");
                 CheckWinCondition();
                 break;
 
@@ -211,8 +216,8 @@ public class Game : MonoBehaviour
                 cell.revealed = true;
                 state[cellPosition.x, cellPosition.y] = cell;
                 playerScore++;
-                GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
-                AudioManager.instance.Play("PointNoise");
+                //GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
+                //AudioManager.instance.Play("PointNoise");
                 CheckWinCondition();
                 break;
         }
