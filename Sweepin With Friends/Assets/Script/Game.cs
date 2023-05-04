@@ -1,3 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine.SceneManagement;
 using Unity.Networking.Transport;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -11,6 +15,8 @@ public class Game : MonoBehaviour
     private int playerCount = -1;
     private int currentTeam = -1;
     // private Tilemap tilemap;
+
+    public int playerScore;
 
     private void OnValidate()
     {
@@ -168,6 +174,7 @@ public class Game : MonoBehaviour
         }
 
         cell.flagged = !cell.flagged;
+        AudioManager.instance.Play("FlagNoise");
         state[cellPosition.x, cellPosition.y] = cell;
         board.Draw(state);
     }
@@ -187,16 +194,25 @@ public class Game : MonoBehaviour
         {
             case Cell.Type.Mine:
                 Explode(cell);
+                playerScore -= 3;
+                GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
+                AudioManager.instance.Play("GameOver");
                 break;
 
             case Cell.Type.Empty:
                 Flood(cell);
+                playerScore += 5;
+                GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
+                AudioManager.instance.Play("FloodNoise");
                 CheckWinCondition();
                 break;
 
             default:
                 cell.revealed = true;
                 state[cellPosition.x, cellPosition.y] = cell;
+                playerScore++;
+                GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
+                AudioManager.instance.Play("PointNoise");
                 CheckWinCondition();
                 break;
         }
