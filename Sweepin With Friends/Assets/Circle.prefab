@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6400695830308330529}
   - component: {fileID: 6400695830308330528}
   - component: {fileID: -7356841048009248907}
+  - component: {fileID: -6610569419307953613}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6400695830308330531}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -75, y: 99, z: -2}
+  m_LocalPosition: {x: -75, y: 99, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -114,3 +115,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e88d92e7130b0864fa90ef45e20228d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-6610569419307953613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6400695830308330531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53f96378c06c69646963c32f6e87b9c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 0
+  SyncRotAngleX: 0
+  SyncRotAngleY: 0
+  SyncRotAngleZ: 0
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  InLocalSpace: 0
+  Interpolate: 1

@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 
 public class PlayerNetwork : NetworkBehaviour
 {
+    private NetworkVariable<int> randomNumber = new NetworkVariable<int>(1);
 
     private void Update()
     {
