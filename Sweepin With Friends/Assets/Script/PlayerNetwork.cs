@@ -11,15 +11,15 @@ public class PlayerNetwork : NetworkBehaviour
     {
         if (!IsOwner) return;
 
-        Vector3 moveDir = new Vector3(0, 0, 0);
+        //Vector3 mousePosition = Input.mousePosition;
 
 
-        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
 
         float moveSpeed = 55f;
 
-        transform.position += worldPosition * moveSpeed * Time.deltaTime;
+       transform.position = mousePosition;
 
     }
 }
