@@ -5,15 +5,15 @@ using UnityEngine;
 public class MusicList : MonoBehaviour
 {
     public AudioClip[] playList;
-    private AudioSource audioSource;
+    private AudioSource banana;
 
     // Start is called before the first frame update
     void Start()
     {
         
-        audioSource = FindAnyObjectByType<AudioSource>();
-        audioSource.loop= true;
-
+        banana = gameObject.AddComponent<AudioSource>();
+        banana.loop= true;
+        banana.volume= 0.66f;
         
     }
 
@@ -26,10 +26,11 @@ public class MusicList : MonoBehaviour
     void Update()
     {
         
-        if (!audioSource.isPlaying)
+        if (!banana.isPlaying)
         {
-            audioSource.clip = GetRandomClip();
-            audioSource.Play();
+            banana.clip = GetRandomClip();
+            banana.Play();
+            
         }
 
 

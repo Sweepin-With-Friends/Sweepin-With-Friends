@@ -152,7 +152,7 @@ public class Game : MonoBehaviour
     {
 
         scoreUI.text = playerScore.ToString();
-
+        
 
         if (Input.GetKeyDown(KeyCode.R)) {
             NewGame();
@@ -201,14 +201,16 @@ public class Game : MonoBehaviour
                 Explode(cell);
                 playerScore -= 3;
                 //GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
-                //AudioManager.instance.Play("GameOver");
+                AudioManager.instance.Play("GameOver");
+                
                 break;
 
             case Cell.Type.Empty:
                 Flood(cell);
                 playerScore += 5;
                 //GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
-                //AudioManager.instance.Play("FloodNoise");
+                AudioManager.instance.Play("FloodNoise");
+                Debug.Log("drugs!");
                 CheckWinCondition();
                 break;
 
@@ -217,7 +219,7 @@ public class Game : MonoBehaviour
                 state[cellPosition.x, cellPosition.y] = cell;
                 playerScore++;
                 //GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>().SetText("Score: " + playerScore.ToString());
-                //AudioManager.instance.Play("PointNoise");
+                AudioManager.instance.Play("PointNoise");
                 CheckWinCondition();
                 break;
         }

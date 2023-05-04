@@ -289,7 +289,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraPadding: 1
-  playerScore: 41565
+  playerScore: 0
+  scoreUI: {fileID: 71527669}
 --- !u!156049354 &452438308
 Grid:
   m_ObjectHideFlags: 0
@@ -517,7 +518,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &667054478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1283,6 +1284,7 @@ GameObject:
   - component: {fileID: 1836598493}
   - component: {fileID: 1836598492}
   - component: {fileID: 1836598491}
+  - component: {fileID: 1836598494}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1376,6 +1378,25 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1836598494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836598489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 334a1e5a0a2fc81448743d09dc802dce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerText: {fileID: 926818127}
+  currentTime: 0
+  countDown: 0
+  hasLimit: 0
+  timerLimit: 0
+  hasFormat: 1
+  format: 2
 --- !u!1 &1889445072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1663,7 +1684,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1928156711
 AudioSource:
   m_ObjectHideFlags: 0
