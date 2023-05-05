@@ -7300,12 +7300,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25bfda02a9a4a6f429ddc8f33fb5f1ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playList:
-  - {fileID: 8300000, guid: 6a917aaafedfd984caf81f2df35f80b4, type: 3}
-  - {fileID: 8300000, guid: f3d9f063460e20c4e988b79dab2915ef, type: 3}
-  - {fileID: 8300000, guid: 255a3cc31fccda64d98b66fdcb259db6, type: 3}
-  - {fileID: 8300000, guid: c36e146d9c32dec4198db39b97856f56, type: 3}
-  - {fileID: 8300000, guid: 853c9af4b19a0e349a5b8e78fd20197f, type: 3}
 --- !u!1 &430473507
 GameObject:
   m_ObjectHideFlags: 0
@@ -14878,19 +14872,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 905686192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04668b2b5fb28c1498df5b4938e8cfaf, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d1455a0962375945b1edcce4444a8ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: GameOver
-    clip: {fileID: 8300000, guid: 1a003864e36a57349af748a5ed7bfdf2, type: 3}
-    mixer: {fileID: 0}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
   - name: FloodNoise
-    clip: {fileID: 8300000, guid: 25be3268030dba64e8cf24d59b70b06d, type: 3}
+    clip: {fileID: 8300000, guid: e72e31858ebce6042b5e171c17733628, type: 3}
     mixer: {fileID: 0}
     volume: 1
     pitch: 1
@@ -14903,8 +14890,15 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: GameOver
+    clip: {fileID: 8300000, guid: 1a003864e36a57349af748a5ed7bfdf2, type: 3}
+    mixer: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   - name: FlagNoise
-    clip: {fileID: 8300000, guid: e72e31858ebce6042b5e171c17733628, type: 3}
+    clip: {fileID: 8300000, guid: 25be3268030dba64e8cf24d59b70b06d, type: 3}
     mixer: {fileID: 0}
     volume: 1
     pitch: 1
@@ -14934,7 +14928,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 905686192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25bfda02a9a4a6f429ddc8f33fb5f1ee, type: 3}
+  m_Script: {fileID: 11500000, guid: 68b007d989aedd6459301acbf897351a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playList:

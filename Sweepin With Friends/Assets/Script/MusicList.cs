@@ -13,7 +13,7 @@ public class MusicList : MonoBehaviour
         
         banana = gameObject.AddComponent<AudioSource>();
         banana.loop= true;
-        banana.volume= 0.66f;
+        banana.volume= 0.33f;
         
     }
 
